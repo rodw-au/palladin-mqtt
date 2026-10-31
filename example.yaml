@@ -1,0 +1,17 @@
+    - name: "Paladin Hot Water Temp"
+      state_topic: "homeassistant/paladin/telemetry"
+      value_template: "{{ value_json.water_temp }}"
+      unit_of_measurement: "°C"
+      device_class: temperature
+
+    - name: "Paladin Solar Power"
+      state_topic: "homeassistant/paladin/telemetry"
+      value_template: "{{ value_json.solar_watts }}"
+      unit_of_measurement: "W"
+      device_class: power
+
+    - name: "Paladin Mains Power"
+      state_topic: "homeassistant/paladin/telemetry"
+      value_template: "{{ value_json.mains_watts }}"
+      unit_of_measurement: "W"
+      device_class: power      
