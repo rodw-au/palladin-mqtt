@@ -1,0 +1,9 @@
+mqtt:
+  switch:
+    - name: "Hot Water Power"
+      unique_id: hot_water_power_switch
+      command_topic: "homeassistant/paladin/command"
+      payload_on: "m"
+      payload_off: "9"
+      optimistic: true  # Flips the switch visually immediately without waiting for a state confirmation topic
+      icon: mdi:water-boiler
