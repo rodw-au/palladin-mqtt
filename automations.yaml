@@ -1,0 +1,41 @@
+- id: '1792944000001'  
+  alias: "Disable Hot Water at Sunset"
+  description: "Turns hot water heating off at sunset"
+  trigger:
+  - trigger: sun
+    event: sunset
+  condition: []
+  action:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.hot_water_power
+  mode: single
+  
+- id: 'enable_paladin_on_battery_full'
+  alias: "HWS - Enable Paladin when Battery Full"
+  description: "Turns on Paladin hot water heater when Solinteg battery reaches 100% SoC"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.solinteg_energy_dashboard_solinteg_battery_soc
+      above: 99.5
+  condition: []
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.hot_water_power
+  mode: single
+
+- id: 'disable_paladin_on_water_is_hot'
+  alias: "HWS - Disable Paladin when Water is hot "
+  description: "Turns off Paladin hot water heater when hot water > 73 degrees"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.shellyuni_98cdac24e53b_temperature
+      above: 72.9
+  condition: []
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.hot_water_power
+  mode: single
+
